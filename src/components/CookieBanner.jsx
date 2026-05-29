@@ -5,13 +5,13 @@ import { getStoredConsent, grantConsent, denyConsent } from '../utils/analytics.
 // Elegant slide-up cookie banner with retro automotive styling.
 // Persists the choice in localStorage and updates Consent Mode v2.
 export default function CookieBanner() {
-  const [visible, setVisible] = useState(false)
+  // Default to visible so the banner markup is present in the pre-rendered
+  // (JS-off) HTML and is seen by crawlers. On the client we hide it only if a
+  // consent choice was already stored.
+  const [visible, setVisible] = useState(true)
 
   useEffect(() => {
-    if (!getStoredConsent()) {
-      const t = setTimeout(() => setVisible(true), 600)
-      return () => clearTimeout(t)
-    }
+    if (getStoredConsent()) setVisible(false)
   }, [])
 
   if (!visible) return null
