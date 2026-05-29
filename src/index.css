@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-matte text-cream font-body text-base antialiased;
+    background-image: theme('backgroundImage.garage-grain');
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  :focus-visible {
+    outline: 3px solid theme('colors.burnt');
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .container-ed {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .chrome-border {
+    @apply border border-chromedark/30 shadow-chrome;
+  }
+  .panel {
+    @apply rounded-xl bg-ink/70 chrome-border;
+  }
+  .label-retro {
+    @apply inline-block uppercase tracking-[0.28em] text-xs font-semibold text-burnt;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-burnt px-6 py-3
+      font-semibold text-cream shadow-panel transition
+      hover:bg-burntdark hover:scale-[1.02] focus-visible:scale-[1.02];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-chromedark/40
+      px-6 py-3 font-semibold text-chrome transition hover:border-burnt hover:text-cream;
+  }
+  .prose-ed p {
+    @apply mb-5 text-creamsoft/90;
+  }
+  .prose-ed h2 {
+    @apply mt-10 mb-4 text-2xl sm:text-3xl text-cream;
+  }
+  .prose-ed h3 {
+    @apply mt-7 mb-3 text-xl text-cream;
+  }
+  .prose-ed ul {
+    @apply mb-5 ml-5 list-disc space-y-2 text-creamsoft/90;
+  }
+  .link-inline {
+    @apply text-burnt underline-offset-4 hover:text-cream hover:underline;
+  }
+}
+
+/* CSS-only accordion: content stays in the HTML source, only visibility animates */
+.acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+.acc-panel[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+.acc-panel > div {
+  overflow: hidden;
+}

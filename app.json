@@ -1,0 +1,20 @@
+{
+  "name": "Classic Car Memories",
+  "description": "A vintage car restoration and Route 66 road-trip journal for retired enthusiasts. Server-rendered static HTML served by Express with compression.",
+  "repository": "https://github.com/classiccarmemories/website",
+  "keywords": ["classic-cars", "restoration", "route-66", "react", "vite", "express", "ssg"],
+  "stack": "heroku-22",
+  "buildpacks": [{ "url": "heroku/nodejs" }],
+  "env": {
+    "NPM_CONFIG_PRODUCTION": {
+      "description": "Install devDependencies so the static build can run.",
+      "value": "false"
+    }
+  },
+  "scripts": {
+    "postdeploy": ""
+  },
+  "formation": {
+    "web": { "quantity": 1, "size": "basic" }
+  }
+}
