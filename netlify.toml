@@ -9,5 +9,5 @@
 # fallback for unknown paths, pointing at the pre-rendered 404 page.
 [[redirects]]
   from = "/*"
-  to = "/404.html"
+  to = "/404/index.html"
   status = 404

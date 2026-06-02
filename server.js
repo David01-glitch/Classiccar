@@ -17,6 +17,9 @@ app.disable('x-powered-by')
 // Long cache for fingerprinted assets, short cache for HTML.
 app.use(
   express.static(DIST, {
+    // Don't 301 /blog → /blog/. Let the catch-all serve dist/blog/index.html
+    // with a clean 200 instead.
+    redirect: false,
     setHeaders(res, filePath) {
       if (filePath.endsWith('.html')) {
         res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate')
@@ -48,7 +51,7 @@ app.get('*', (req, res) => {
     }
   }
 
-  return res.status(404).sendFile(path.join(DIST, '404.html'))
+  return res.status(404).sendFile(path.join(DIST, '404', 'index.html'))
 })
 
 app.listen(PORT, () => {

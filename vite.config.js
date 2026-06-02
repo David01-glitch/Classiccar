@@ -9,5 +9,11 @@ export default defineConfig({
   },
   ssr: {
     noExternal: ['react-router-dom']
+  },
+  // Emit directory-style HTML (dist/blog/index.html) so every static host —
+  // AWS Amplify, Netlify, Vercel, GitHub Pages — serves clean URLs like /blog
+  // natively without an SPA rewrite hijacking inner routes.
+  ssgOptions: {
+    dirStyle: 'nested'
   }
 })
